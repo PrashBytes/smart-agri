@@ -1,8 +1,8 @@
 import React from "react";
 
 export default function ChartTrend({ t, history, weather }) {
-  const bar = (val, color = "var(--secondary-blue)", label = "") => (
-    <div style={{ 
+  const bar = (val, color = "var(--secondary-blue)", label = "", key) => (
+    <div key={key} style={{ 
       display: 'flex', 
       alignItems: 'center', 
       gap: 'var(--space-2)', 
@@ -85,10 +85,10 @@ export default function ChartTrend({ t, history, weather }) {
             gap: 'var(--space-2)'
           }}>
             <span>💧</span>
-            Soil Moisture Trend
+            {t.moistureTrend}
           </h4>
           {history.moisture.map((m, i) => 
-            bar(m, 'var(--gradient-primary)', `Day ${i + 1}`)
+            bar(m, 'var(--gradient-primary)', t.dayLabel(i + 1), `mo-${i}`)
           )}
         </div>
       </div>
@@ -98,13 +98,13 @@ export default function ChartTrend({ t, history, weather }) {
         <div style={{ display: "flex", alignItems: "center", gap: 'var(--space-2)', marginBottom: 'var(--space-4)' }}>
           <span style={{ fontSize: '1.5rem' }}>🚰</span>
           <h3 style={{ margin: 0, fontSize: 'var(--font-size-lg)', fontWeight: 600, color: 'var(--gray-800)' }}>
-            Tank Level History
+            {t.tankLevelHistory}
           </h3>
         </div>
         
         <div>
           {history.tank.map((tl, i) => 
-            bar(Math.round((tl / 250) * 100), 'var(--gradient-secondary)', `Day ${i + 1}`)
+            bar(Math.round((tl / 250) * 100), 'var(--gradient-secondary)', t.dayLabel(i + 1), `tl-${i}`)
           )}
         </div>
       </div>
@@ -114,7 +114,7 @@ export default function ChartTrend({ t, history, weather }) {
         <div style={{ display: "flex", alignItems: "center", gap: 'var(--space-2)', marginBottom: 'var(--space-4)' }}>
           <span style={{ fontSize: '1.5rem' }}>🌧️</span>
           <h3 style={{ margin: 0, fontSize: 'var(--font-size-lg)', fontWeight: 600, color: 'var(--gray-800)' }}>
-            Rainfall Forecast
+            {t.rainfallForecast}
           </h3>
         </div>
         
@@ -139,7 +139,7 @@ export default function ChartTrend({ t, history, weather }) {
                   color: 'var(--gray-700)',
                   fontWeight: 600
                 }}>
-                  {w.rainMM}mm
+                  {w.rainMM} {t.mmUnit}
                 </span>
               </div>
               <div style={{ 

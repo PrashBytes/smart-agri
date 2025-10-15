@@ -1,26 +1,25 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
-import "../index.css";
 
-function MoreInfoPage() {
-    const navigate = useNavigate();
-    return (
-        <div className="info-page">
-            <h2>More Information</h2>
-            <ul>
-                <li>What to do if the water tank is empty? <br />
-                    <span>Click "Refill Water Tank" on the dashboard. You can also record rainwater collection.</span>
-                </li>
-                <li>How to choose the right fertilizer? <br />
-                    <span>Check the Nutrient Index panel for NPK advice.</span>
-                </li>
-                <li>How to reduce pest risk? <br />
-                    <span>Monitor the Pest/Disease panel and follow the recommended pesticide.</span>
-                </li>
-            </ul>
-            <button className="proceed-btn" onClick={() => navigate("/dashboard")}>Back to Dashboard</button>
+export default function MoreInfo({ t }) {
+  return (
+    <main className="container">
+      <div className="card">
+        <h2 style={{ marginTop: 0 }}>{t.moreInfo}</h2>
+        <div className="grid grid-2">
+          <div className="card">
+            <h3>How decisions work</h3>
+            <p>- Sensors simulate moisture, tank, weather, nutrients, pests.</p>
+            <p>- Advice combines values to show clear actions.</p>
+            <p>- Tune scenarios and instantly see impact.</p>
+          </div>
+          <div className="card">
+            <h3>Localization</h3>
+            <p>- English / Tamil / Hindi toggle.</p>
+            <p>- Icons + colors for quick understanding.</p>
+            <p>- Mobile-first UI with big touch targets.</p>
+          </div>
         </div>
-    );
+      </div>
+    </main>
+  );
 }
-
-export default MoreInfoPage;

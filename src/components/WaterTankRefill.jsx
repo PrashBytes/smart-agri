@@ -16,7 +16,7 @@ export default function WaterTankRefill({ open, t, onClose, onRefill, capacity, 
         <input type="range" min="10" max={Math.max(10, capacity - current)} value={amount} onChange={e => setAmount(+e.target.value)} />
         <div style={{ marginTop: 8, display: "flex", gap: 8 }}>
           <button className="btn btn-primary" onClick={() => onRefill(amount)}>{t.refillTank}</button>
-          <button className="btn" onClick={onClose}>Close</button>
+          <button className="btn" onClick={onClose}>{t.close}</button>
         </div>
       </div>
     </div>

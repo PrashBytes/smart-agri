@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, Link } from 'react-router-dom';
 import './App.css';
+import LanguageToggle from './components/LanguageToggle.jsx';
 import { getText } from './i18n.js';
 
 // Import pages
@@ -34,6 +35,10 @@ function App() {
     setIsAuthenticated(false);
   };
 
+  const changeLang = (value) => {
+    setLang(value);
+    localStorage.setItem('language', value);
+  };
   const t = getText(lang);
 
   return (
@@ -47,12 +52,13 @@ function App() {
           </div>
           
           <nav className="nav-section">
-            <a href="/dashboard" className="nav-link">Dashboard</a>
-            <a href="/pesticides" className="nav-link">Pesticides</a>
-            <a href="/more" className="nav-link">More Info</a>
+            <Link to="/dashboard" className="nav-link">Dashboard</Link>
+            <Link to="/pesticides" className="nav-link">Pesticides</Link>
+            <Link to="/more" className="nav-link">More Info</Link>
           </nav>
 
-          <div className="header-actions">
+          <div className="header-actions" style={{ display: 'flex', gap: 'var(--space-3)', alignItems: 'center' }}>
+            <LanguageToggle lang={lang} setLang={changeLang} />
             <button onClick={handleLogout} className="logout-btn">
               <span className="logout-icon">🚪</span>
               Logout
@@ -85,7 +91,7 @@ function App() {
         />
         <Route 
           path="/more" 
-          element={isAuthenticated ? <MoreInfoPage /> : <Navigate to="/signin" />} 
+          element={isAuthenticated ? <MoreInfoPage t={t} /> : <Navigate to="/signin" />} 
         />
       </Routes>
     </div>
