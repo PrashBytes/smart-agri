@@ -1218,22 +1218,28 @@ header p {
 }
 
 .nav-links {
-  display: flex;
-  gap: 1rem;
+  display: grid;
+  grid-template-columns: repeat(3, 160px);
+  gap: 0.75rem;
+  justify-content: center;
 }
 
 .nav-link {
   background: var(--gradient-secondary);
   border: none;
   color: #ffffff;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1rem;
   border-radius: var(--radius-lg);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.3s ease;
   text-shadow: none;
   box-shadow: var(--shadow-md);
+  display: block;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
 }
 
 .nav-link:hover {
@@ -1293,9 +1299,10 @@ header p {
   }
   
   .nav-links {
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 0.5rem;
+    width: 100%;
   }
   
   .nav-link {

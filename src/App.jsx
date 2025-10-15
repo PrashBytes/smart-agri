@@ -51,10 +51,12 @@ function App() {
             <p className="brand-tagline">Intelligent Agriculture Solutions</p>
           </div>
           
-          <nav className="nav-section">
-            <Link to="/dashboard" className="nav-link">Dashboard</Link>
-            <Link to="/pesticides" className="nav-link">Pesticides</Link>
-            <Link to="/more" className="nav-link">More Info</Link>
+          <nav className="header-nav">
+            <div className="nav-links">
+              <Link to="/dashboard" className="nav-link">Dashboard</Link>
+              <Link to="/pesticides" className="nav-link">Pesticides</Link>
+              <Link to="/more" className="nav-link">More Info</Link>
+            </div>
           </nav>
 
           <div className="header-actions" style={{ display: 'flex', gap: 'var(--space-3)', alignItems: 'center' }}>
